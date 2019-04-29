@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="GBK" standalone="yes"?>
+<mspweb>
+	
+	<!--   <locale country="zh" language="CN" fileName="global" />  -->
+	<!-- 使用语言 // 英语 : en US   中国中文: zh CN -->
+	
+	<record name="country" value="CN" type="string" desc="资源文件国家"/>
+	<record name="language" value="zh" type="string" desc="资源文件语言"/>
+	<record name="resFile" value="global" type="string" desc="资源文件名称"/>
+	<!-- 为了配置path -->
+	<record name="configPath" value="/mspweb" type="string" desc="mspweb路径"/>
+	<!-- 定时 查询任务 相关参数  1执行0不执行-->
+	<record name="TaskOpen" value="0"  desc="定时任务开关" type="int"></record>	
+	<record name="TaskDownDir"  type="string"  desc="定时任务目录"><![CDATA[/home/mspexport/]]></record>	
+	<record name="TaskModelDir"  type="string"  desc="定时任务模板目录"><![CDATA[/home/mspweb/excelModel/]]></record><!--/home/mspweb/excelModel/-->
+
+	<record name="TaskScanDbInterval"  type="int"  value="30" desc="定时任务扫描数据库时间间隔(s)"></record>	
+
+	<record name="taskPrintDebug"  type="int"  value="0" desc="定时任务是否打印DEBUG信息"></record>	
+	
+	<!-- api.map.baidu.com ; localhost:8181 -->
+	 <record name="maphost"  type="string"  value="api.map.baidu.com" desc="百度地图服务器"></record>	
+
+	 <record name="userHourNumber"  type="double"  value="4.0" desc="小时报表中一小时相同用户被统计次数"></record>	
+	 <record name="increment"  type="double"  value="0.15" desc="每多一小时系数增加值"></record>	
+	
+	<record name="useWapMiddle" value="1" type="int"  desc="投诉查询使用： 1,中等会话; 0.使用 详细回话"	/>	
+
+	<record name="monitorModuleName" value="指挥调度" type="string"  desc=""	/>	
+	<record name="monitorMenuName1" value="实时监控" type="string"  desc=""	/>	
+	<record name="monitorMenuName2" value="场景监控" type="string"  desc=""	/>	
+	<record name="monitorMenuName3" value="历史查询" type="string"  desc=""	/>	
+	<record name="monitorMenuName4" value="场景定制" type="string"  desc=""	/>	
+
+	<record name="allTitle" value="所有业务实时监控图x" type="string"  desc=""/>	
+	<record name="wapTitle" value="WAP实时监控图x" type="string"  desc=""	/>	
+	<record name="mmsTitle" value="彩信实时监控图x" type="string"  desc=""	/>	
+
+	<record name="monitoringKpi1" value="业务请求数" type="string"  desc=""	/>	
+	<record name="monitoringKpi2" value="Gi接口流量" type="string"  desc=""	/>	
+    <record name="monitoringKpi3" value="Attah成功率" type="string"  desc=""	/>	
+
+    <record name="monitoringKpi4" value="PDP激活成功率" type="string"  desc=""	/>	
+    <record name="monitoringKpi5" value="业务成功率" type="string"  desc=""	/>	
+    <record name="monitoringKpi6" value="Gi接口重传率" type="string"  desc=""	/>	
+    <record name="monitoringKpi7" value="WAP下载速率(bps)" type="string"  desc=""	/>	        
+    <record name="monitoringKpi8" value="WAP下载时延(s)" type="string"  desc=""	/>	
+    <record name="monitoringKpi9" value="WAP业务请求数" type="string"  desc=""	/>	
+    <record name="monitoringKpi10" value="WAP业务成功率" type="string"  desc=""/>	
+    <record name="monitoringKpi11" value="彩信下载速率(bps)" type="string"  desc=""/>	
+    
+    <record name="monitoringKpi12" value="彩信下载时延(s)" type="string"  desc=""/>	
+    <record name="monitoringKpi13" value="彩信业务量" type="string"  desc=""/>	
+    <record name="monitoringKpi14" value="Gi接口彩信流量" type="string"  desc=""/>	
+    <record name="monitoringKpi15" value="彩信业务成功率" type="string"  desc=""/>	
+   <!-- "4A级以上风景区","成都风景区","高速公路入口","高速公路小区","高铁","高校","交通枢纽","商业区"  -->
+    <record name="sceneFlag" value="" type="array"  desc=""/>    
+    <record name="FilterIp" value="192.168.1.xxx" type="string"  desc=""/>
+     <record name="data_mirroring" value="/capture" type="string" desc="数据镜像目录配置"/>
+	<!--IMEI FTP server-->
+	<!--FTP 服务器地址-->
+	<record name="imei_ftp_ip" value="192.168.1.156" type="string"  desc="FTP服务器地址"/>  
+	<!--FTP 登录账号-->
+	<record name="imei_ftp_name" value="ftptheta" type="string"  desc="账号"/>  
+	<!--FTP 登录密码-->
+	<record name=" imei_ftp_pwd" value="123" type="string"  desc="密码"/>
+	<!--FTP 端口-->   
+	<record name=" imei_ftp_port" value="21" type="int"  desc="端口"/>  
+	<!--FTP 文件上传路径-->
+	<record name=" imei_ftp_path" value="//home//" type="String"  desc="文件上传路径"/>
+	<!---湖北指标监控开关-->
+     <record name="imeiSwitch" value="0" type="int"  desc="1:开 ,0：关"/>
+	
+      <!--同步导入导出配置-->   
+    <record name="download" value="http://192.168.0.68:9988/download" type="string"  desc=""/>     
+    <record name="upload" value="http://192.168.0.68:9988/upload" type="string"  desc=""/>     
+    <record name="province" value="531" type="string"  desc=""/>     
+    <record name="reportid" value="901" type="int"  desc=""/>     
+      <!--放到mspweb下的路径-->
+    <record name="fileimp" value="//table//download//" type="string"  desc=""/>     
+    <record name="fileexp" value="//table//upload//" type="string"  desc=""/> 
+  	<!--数据订阅Socket ip 端口-->
+  	<record name="mspsocketip" value="192.168.1.156" type="string"  desc=""/>     
+    <record name="mspsocketport" value="16444" type="string"  desc=""/>    
+    
+    <!-- web页面信令追踪配置  --> 
+    <!--  格式: ip1:port1;ip2:port2;ipn:portn 对应多台cdr。 -->
+    <record name="monitorHost" value="192.168.0.80:6768;" type="string"  desc="matchCDR所在IP:port,用户信令追踪"/>
+  
+  	<!-- 后解器配置  mspweb主机地址，包括端口-->
+    <record name="web_host" value="192.168.1.101:8080" type="string"  desc="mspweb ip:port"/>
+    
+    <!---湖北指标监控 scoket 地址-->
+    <record name="scoket_ip" value="192.168.2.102" type="string"  desc="scoket ip"/>
+    <record name="scoket_port" value="4242" type="string"  desc="scoket 端口"/>
+    <!---湖北指标监控 FTP相关配置-->
+    <record name="ftp_Ip" value="192.168.2.141" type="string"  desc="ftp服务器IP地址"/>
+    <record name="ftp_UserName" value="ftptheta" type="string"  desc="ftp用户名"/>
+    <record name="ftp_UserPwd" value="123" type="string"  desc="ftp密码"/>
+    <record name="ftp_Port" value="21" type="string"  desc="ftp端口号"/>
+    <record name="ftp_Path" value="/home" type="string"  desc="ftp读取警告信息文件的存放目录"/>
+     <!---湖北指标监控开关-->
+     <record name="kpiIsTask" value="0" type="int"  desc="1:开 ,0：关"/>
+     
+     
+  	
+	<!-- 用户在线状态查询消息模板存放路径  -->
+	<record name="xmlMessageTemplate" value="d:\\ThetaWorkSpace\\mspweb\\WebContent\\WEB-INF\\userStatusQuery" type="String" desc="用户在线状态查询消息模板"/>
+	<!--<record name="xmlMessageTemplate" value="/home/mspweb/WebContent/WEB-INF/userStatusQuery" type="String" desc="用户在线状态查询消息模板"/>-->
+  	
+	<!-- 用户在线状态查询数据服务器  -->
+	<record name="xmlMessageDataService" value="http://192.168.2.108:8888/data_USERSCOUT" type="String" desc="用户在线状态查询数据服务器"/>
+	<!-- 用户在线状态查询日志服务器  -->
+	<record name="xmlMessageLogService" value="http://192.168.2.108:8887/IF_USERSCOUT" type="String" desc="用户在线状态查询日志服务器"/>
+	<!-- 用户在线状态查询上报网关  -->
+	<record name="xmlMessageGateService" value="http://192.168.2.108:8886/IF_URMUpload" type="String" desc="用户在线状态查询上报网关"/>
+  	
+	<!-- 数据服务器开关（当系统中不需要数据服务器的时候，此开关可以关掉数据服务器和数据合成服务。0：关；1：开；当系统中数据服务器为关闭状态时，数据服务配置项xmlMessageDataService应指向充当数据服务的地址）  -->
+	<record name="dataServiceGate" value="1" type="int" desc="数据服务器开关"/>
+</mspweb>

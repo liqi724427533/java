@@ -1,0 +1,478 @@
+<?xml version="1.0" encoding="GBK"?>
+  <report id="1" version="1.0">
+	<datas>
+ 		<data id="selectroles" tableName="" desc="角色列表" type="2">
+		   <sql class="">
+		 	 <![CDATA[
+		 	  #if($issystem==1)		 	 
+		         select t.role_id as role_id,t.name as name,t.description as description,
+ 					t.isenabled as isenabled
+ 				from syu_role_list t
+ 				where 1=1
+              #if($name&&$name!='') and name like upper('%$name%') or name like lower('%$name%') #end 
+ 			  #if($isenabled&&$isenabled!='') and  isenabled='$isenabled' #end 
+ 			   #else
+ 			    select t.role_id as role_id,t.name as name,t.description as description,
+ 					t.isenabled as isenabled
+ 				from syu_role_list t
+ 				where t.creator = '$creator'
+              #if($name&&$name!='') and name like upper('%$name%') or name like lower('%$name%') #end 
+ 			  #if($isenabled&&$isenabled!='') and  isenabled='$isenabled' #end 
+ 			  #end
+ 			   
+ 			  
+		 	 ]]>
+		   </sql>
+		   <key> <![CDATA[value]]></key>
+		</data>
+ 	    <data id="addrole" tableName="" desc="添加角色" type="2">
+		   <sql class="" autoPage="0" type="insert" >
+		 	 <![CDATA[
+		 	insert into syu_role_list(role_id,name,description,creator,isenabled)
+       			 values('$role_id','$name','$description','$creator','$enabled')
+ 		 	 ]]>
+		   </sql>
+		   <key> <![CDATA[]]></key>
+		</data>
+		<data id="editrole" tableName="" desc="修改角色" type="2">
+		   <sql class="" autoPage="0" type="insert" >
+		 	 <![CDATA[
+		 	 update syu_role_list t 
+	             set t.name='$name',
+	                 t.description='$description',
+	                 t.isenabled='$enabled'
+	                
+	             where t.role_id=$roleid 
+ 		 	 ]]>
+		   </sql>
+		   <key> <![CDATA[]]></key>
+		</data>
+		<data id="deleterole" tableName="" desc="ShanChu" type="2">
+			<sql class="" autoPage="0" type="insert" >
+			<![CDATA[
+			     delete syu_role_list t where t.role_id='$roleid'
+			]]>
+			</sql>
+			<key> <![CDATA[]]></key>
+		</data>
+		<data id="deleterolemodule" tableName="" desc="ShanChu" type="2">
+			<sql class="" autoPage="0" type="insert" >
+			<![CDATA[
+			     delete syu_role_module t where t.role_id='$roleid'
+			]]>
+			</sql>
+			<key> <![CDATA[]]></key>
+		</data>
+		<data id="selectrolenohasmodels" tableName="" desc="未选模块列表" type="2">
+		   <sql class="" autoPage="0">
+		 	 <![CDATA[	 	 
+		select t.module_id as module_id,t.name as name,t.description as description
+	         from syu_module_list t
+	         where  d.isdelete!=1 and t.isenabled=1 and id not in(select n.module_id from syu_role_module n where n.role_id=$roleid)  
+        ]]>
+		   </sql>
+		   <key> <![CDATA[value]]></key>
+		</data>
+		
+		<data id="selectrolehasmodels" tableName="" desc="已选模块列表" type="2">
+		   <sql class="" autoPage="0">
+		 	 <![CDATA[	 	 
+					select d.module_id as module_id,d.name as name,d.description as description,d.order_num
+			               from syu_module_list d,syu_role_module t where
+			               t.role_id='$roleid' and t.module_id=d.module_id
+			               and d.isenabled=1 and d.isdelete!=1
+			               order by d.order_num desc
+			 	 ]]>
+		   </sql>
+		   <key> <![CDATA[value]]></key>
+		</data>
+		
+		<data id="insertrolehasmodels" tableName="" desc="角色拥有的功能" type="2">
+		   <sql class="" autoPage="0" type="insert" >
+		 	 <![CDATA[
+			 	  insert into syu_role_module (role_id,module_id)
+	               	values('$roleid','$model_id')
+ 		 	 ]]>
+		   </sql>
+		   <key> <![CDATA[]]></key>
+		</data>
+		
+		<data id="initrolemodels" tableName="" desc="初始化角色功能" type="2">
+		   <sql class="" autoPage="0" type="insert" >
+		 	 <![CDATA[
+			 	  insert into syu_role_module (role_id,module_id)
+	               	values('$role_id','$model_id')
+ 		 	 ]]>
+		   </sql>
+		   <key> <![CDATA[]]></key>
+		</data>
+		<data id="selectsequence" tableName="" desc="查找ROLEID_SEQUENCE值" type="2">
+		   <sql class="" autoPage="0" type="select" >
+		 	 <![CDATA[
+			 	  select ROLEID_SEQUENCE.NEXTVAL as role_id from dual
+ 		 	 ]]>
+		   </sql>
+		   <key> <![CDATA[]]></key>
+		</data>
+		
+		<data id="deleteallrolehasmodels" tableName="" desc="角色删除功能" type="2">
+		   <sql class="" autoPage="0" type="insert" >
+		 	 <![CDATA[
+		 			 delete syu_role_module t where t.role_id='$roleid' and   
+                       module_id in (    
+                              select module_id from syu_module_list where module_type IN(1,3,4))
+ 		 	 ]]>
+		   </sql>
+		   <key> <![CDATA[]]></key>
+		</data>
+		<data id="deleteallrolehasmodels2" tableName="" desc="角色删除功能" type="2">
+		   <sql class="" autoPage="0" type="insert" >
+		 	 <![CDATA[
+		 			 delete syu_role_module t where t.role_id='$roleid' and   
+                       module_id in (    
+                              select module_id from syu_module_list where module_type IN(1,2,3,4))
+ 		 	 ]]>
+		   </sql>
+		   <key> <![CDATA[]]></key>
+		</data>
+		<data id="deleteallrolehasmodels1" tableName="" desc="角色删除功能" type="2">
+		   <sql class="" autoPage="0" type="insert" >
+		 	 <![CDATA[
+		 			 delete syu_role_module t where t.role_id='$roleid' and   
+                       module_id in (    
+                              select module_id from syu_module_list where module_type=2)
+ 		 	 ]]>
+		   </sql>
+		   <key> <![CDATA[]]></key>
+		</data>
+		<data id="selectSyStemRoleOPtion" tableName="" desc="系统用户拥有的操作权限" type="2">
+		   <sql class="" >
+		 	 <![CDATA[
+		 		select t.module_id as module_id,t.name as name,t.description as description
+		 		  from syu_module_list t
+                 		 where t.isdelete!=1 and t.module_type=2  
+                   order by t.module_id asc 
+ 		 	 ]]>
+		   </sql>
+		   <key> <![CDATA[]]></key>
+		</data>
+		
+		<data id="selectroleoption" tableName="" desc="查询用户现有的权限" type="2">
+		   <sql class="" >
+		 	 <![CDATA[
+		 	select t.role_id,t.module_id  from syu_role_module t
+		 	where 1=1
+		 		 #if($module_id&&$module_id!='') and  module_id in ($module_id) #end 
+                 #if($role_id&&$role_id!='') and  role_id in '$role_id' #end 
+ 		 	 ]]>
+		   </sql>
+		   <key> <![CDATA[]]></key>
+		</data>
+		
+		<data id="selectroleoptiondb" tableName="" desc="查询用户现有的权限" type="2">
+		   <sql class="" autoPage="0" >
+		 	 <![CDATA[
+		 	  #if($account_id=='system')
+		 	  
+		 	  
+		 	    select n.module_id as module_id,n.name as name,n.description as description,
+                 1 checked  from syu_module_list n,syu_role_module s where n.module_type=2
+                   and n.module_id=s.module_id and s.role_id='$role_id'
+        union all
+          select n.module_id as module_id,n.name as name,n.description as description,0 checked  from syu_module_list n
+           where n.module_type=2 and n.module_id not in  
+              (select n.module_id from syu_module_list n,syu_role_module s where n.module_type=2
+                   and n.module_id=s.module_id and s.role_id='$role_id'
+              )
+              order by  module_id
+		#else
+		 	 select distinct n.module_id as module_id,n.name as name,n.description as description,t.role_id,
+                 1 checked from syu_role_module t,syu_module_list n,syu_user_role d
+                where  n.module_type=2 and d.account_id='$account_id'  
+                and t.module_id = n.module_id
+                and t.role_id = d.role_id 
+                and t.role_id = '$role_id'
+          and n.module_id in  
+          (select distinct n.module_id from syu_role_module t,syu_module_list n where t.module_id = n.module_id 
+          and n.module_type=2  and t.role_id = '$role_id' )
+		    union all
+				  select distinct n.module_id as module_id,n.name as name,n.description as description,t.role_id,
+		          			 0 checked from syu_role_module t,syu_module_list n,syu_user_role d
+		          			where  n.module_type=2  and t.module_id = n.module_id and t.role_id = '$role_id'
+                    and t.role_id = d.role_id and d.account_id='$account_id'
+							and n.module_id not in  
+							(select  distinct n.module_id from syu_role_module t,syu_module_list n where n.module_type=2 
+								 and t.module_id = n.module_id and t.role_id = '$role_id' )
+								 order by  module_id
+		#end
+ 		 	 ]]>
+		   </sql>
+		   <key> <![CDATA[]]></key>
+		</data>
+		<!-- 
+		#if($account_id=='system')
+		 	  
+		 	  
+					select n.tables, 1 checked  
+					from syu_module_list n,syu_role_module s where n.module_type=2
+					and n.module_id=s.module_id and s.role_id='$role_id'
+					union all
+					select n.tables,0 checked  from syu_module_list n
+					where n.module_type=2 and n.module_id not in  
+					(select n.module_id from syu_module_list n,syu_role_module s where n.module_type=2
+					and n.module_id=s.module_id and s.role_id='$role_id'
+					)
+				#else
+		 	 		select distinct n.tables,1 checked 
+		 	 		from syu_role_module t,syu_module_list n,syu_user_role d
+                	where  n.module_type=2 and d.account_id='$account_id'  
+                	and t.module_id = n.module_id
+                	and t.role_id = d.role_id 
+                	and t.role_id = '$role_id'
+         		 	and n.module_id in  
+					(select distinct n.module_id from syu_role_module t,syu_module_list n where t.module_id = n.module_id 
+          			and n.module_type=2  and t.role_id = '$role_id' )
+		    		union all
+				  	select distinct n.tables,0 checked 
+		          	from syu_role_module t,syu_module_list n,syu_user_role d
+		          	where  n.module_type=2  and t.module_id = n.module_id and t.role_id = '$role_id'
+                    and t.role_id = d.role_id and d.account_id='$account_id'
+					and n.module_id not in  
+					(select  distinct n.module_id from syu_role_module t,syu_module_list n where n.module_type=2 
+					and t.module_id = n.module_id and t.role_id = '$role_id' )
+				#end
+		 -->
+		<data id="selectroletables" tableName="" desc="查询用户现有的权限菜单的表名" type="2">
+		   <sql class="" autoPage="0" >
+		 	 <![CDATA[
+				select distinct d.tables,d.description
+               	from syu_module_list d,syu_role_module t where
+               	t.role_id='$roleid' and t.module_id=d.module_id
+               	and d.isenabled=1 and d.isdelete!=1
+ 		 	 ]]>
+		   </sql>
+		   <key> <![CDATA[]]></key>
+		</data>
+		<data id="updateisenable" tableName="" desc="角色是否启用" type="2">
+		   <sql class="" autoPage="0" type="insert" >
+		 	 <![CDATA[
+		 	 update syu_role_list t 
+	             set 
+	                 t.isenabled='$isenabled'
+	                
+	             where t.role_id=$roleid 
+ 		 	 ]]>
+		   </sql>
+		   <key> <![CDATA[]]></key>
+		</data>
+	</datas>
+	<models>
+		<model id="selectroles" desc="role_list" view=""  out="">
+ 		  <views>
+ 			    <!-- out=0不输出 模型信息,只是协助 下面 模型处理数据  -->
+ 			<view ref="selectroles" index="1" out="0" id="1">
+	 			<show>
+	 				 <col  name="role_id" desc="role_id"  bOut="1" width="100"  bVisible="1"  align="left" ></col>
+					 <col  name="name" desc="role_name"  bVisible="1" width="100" bOut="1" align="left" ></col>
+					 <col  name="description" desc="role_description"  bVisible="1" width="130" bOut="1" align="left" ></col>
+					 <col  name="isenabled" desc="state"  bVisible="1" width="100" bOut="1" align="left" renderer='function(val){return rendEnabled(val);}' xtype="actioncolumn" icon="../../images/public/edit.png" handler="function(grid, rowIndex, colIndex) {changeEnable(grid, rowIndex, colIndex); }" ></col>
+					 <col  name="operate"  desc="角色赋模块"   bVisible="1"  width="140"   bOut="1" align="center" xtype="actioncolumn" icon="../../images/public/edit.png" handler="function(grid, rowIndex, colIndex) {setModuleFunction(grid, rowIndex, colIndex); }" ></col>
+					 <col  name="operate"  desc="角色赋操作"   bVisible="1"  width="140"   bOut="1" align="center" xtype="actioncolumn" icon="../../images/public/edit.png" handler="function(grid, rowIndex, colIndex) {setOptionFunction(grid, rowIndex, colIndex); }" ></col>
+ <!--
+					 <col  name="isdelete" desc="是否删除"  bVisible="1" width="100" bOut="1" align="left" renderer='function(val){return rendDelete(val);}' ></col>
+				     <col  name="operate"  desc="modify"   bVisible="1"  width="60"   bOut="1" align="center" xtype="actioncolumn" icon="../../images/public/edit.png" handler="function(grid, rowIndex, colIndex) {modify(grid, rowIndex, colIndex);}" ></col>
+				     <col  name="operate"  desc="ShuanChu"   bVisible="1"  width="60"   bOut="1" align="center" xtype="actioncolumn" icon="../../images/public/delete.gif" handler="function(grid, rowIndex, colIndex) {del(grid, rowIndex, colIndex);}" ></col>
+				    -->
+				</show> 				
+ 			</view>
+		   </views>
+		</model>
+	<model id="addrole" desc="addrole" view=""  out="">
+ 			<views>
+ 			    <!-- out=0不输出 模型信息,只是协助 下面 模型处理数据  -->
+ 				<view ref="addrole" index="1" out="0" id="1">
+	 				<show>
+	 		 
+					</show> 				
+ 				</view>
+		</views>
+		</model>
+	<model id="editrole" desc="editrole" view=""  out="">
+ 			<views>
+ 			    <!-- out=0不输出 模型信息,只是协助 下面 模型处理数据  -->
+ 				<view ref="editrole" index="1" out="0" id="1">
+	 				<show>
+	 		 
+					</show> 				
+ 				</view>
+		    </views>
+	</model>
+		<model id="updateisenable" desc="updateisenable" view=""  out="">
+ 			<views>
+ 			    <!-- out=0不输出 模型信息,只是协助 下面 模型处理数据  -->
+ 				<view ref="updateisenable" index="1" out="0" id="1">
+	 				<show>
+	 		 
+					</show> 				
+ 				</view>
+		    </views>
+	</model>
+	<model id="deleterole" desc="deleterole" view=""  out="">
+			<views>
+				<!-- out=0不输出 模型信息,只是协助 下面 模型处理数据  -->
+				<view ref="deleterole" index="1" out="0" id="1">
+					<show>
+	 		 
+					</show> 				
+				</view>
+			</views>
+	</model>
+	<model id="deleterolemodule" desc="deleterole" view=""  out="">
+			<views>
+				<!-- out=0不输出 模型信息,只是协助 下面 模型处理数据  -->
+				<view ref="deleterolemodule" index="1" out="0" id="1">
+					<show>
+	 		 
+					</show> 				
+				</view>
+			</views>
+	</model>
+	<model id="selectrolenohasmodels" desc="nohas_module" view=""  out="">
+ 			<views>
+ 			    <!-- out=0不输出 模型信息,只是协助 下面 模型处理数据  -->
+ 				<view ref="selectrolenohasmodels" index="1" out="0" id="1">
+	 				<show>
+	 				 <col  name="module_id" desc="module_id"  bOut="1"  bVisible="1"  align="left" ></col>
+					 <col  name="name" desc="module_name"  bVisible="1" width="80" bOut="1" align="left" ></col>
+					 <col  name="description" desc="module_description"  bVisible="1" width="80" bOut="1" align="left" ></col>
+					</show> 				
+ 				</view>
+			</views>
+	</model>
+	
+	<model id="selectrolehasmodels" desc="selectrolehasmodels" view=""  out="">
+ 			<views>
+ 			    <!-- out=0不输出 模型信息,只是协助 下面 模型处理数据  -->
+ 				<view ref="selectrolehasmodels" index="1" out="0" id="1">
+	 				<show>
+	 				 <col  name="module_id" desc="module_id"  bOut="1"  bVisible="1"  align="left" ></col>
+					 <col  name="name" desc="module_name"  bVisible="1" width="80" bOut="1" align="left" ></col>
+					 <col  name="description" desc="module_description"  bVisible="1" width="80" bOut="1" align="left" ></col>
+					</show> 				
+ 				</view>
+			</views>
+		</model>
+		
+	<model id="insertrolehasmodels" desc="insertrolehasmodels" view=""  out="">
+ 			<views>
+ 			    <!-- out=0不输出 模型信息,只是协助 下面 模型处理数据  -->
+ 				<view ref="insertrolehasmodels" index="1" out="0" id="1">
+	 				<show>
+	 		 
+					</show> 				
+ 				</view>
+		</views>
+		</model>
+	<model id="deleteallrolehasmodels" desc="deleteallrolehasmodels" view=""  out="">
+ 			<views>
+ 			    <!-- out=0不输出 模型信息,只是协助 下面 模型处理数据  -->
+ 				<view ref="deleteallrolehasmodels" index="1" out="0" id="1">
+	 				<show>
+	 		 
+					</show> 				
+ 				</view>
+		</views>
+		</model>
+	<model id="initrolemodels" desc="" view=""  out="">
+ 			<views>
+ 			    <!-- out=0不输出 模型信息,只是协助 下面 模型处理数据  -->
+ 				<view ref="initrolemodels" index="1" out="0" id="1">
+	 				<show>
+	 		 
+					</show> 				
+ 				</view>
+		</views>
+		</model>
+	<model id="selectsequence" desc="" view=""  out="">
+ 			<views>
+ 			    <!-- out=0不输出 模型信息,只是协助 下面 模型处理数据  -->
+ 				<view ref="selectsequence" index="1" out="0" id="1">
+	 				<show>
+	 		 		 <col  name="role_id" desc="role_id"  bOut="1"  bVisible="1"  align="left" ></col>
+					</show> 				
+ 				</view>
+		</views>
+	</model>
+	<model id="deleteallrolehasmodels2" desc="deleteallrolehasmodels" view=""  out="">
+ 			<views>
+ 			    <!-- out=0不输出 模型信息,只是协助 下面 模型处理数据  -->
+ 				<view ref="deleteallrolehasmodels2" index="1" out="0" id="1">
+	 				<show>
+	 		 
+					</show> 				
+ 				</view>
+		</views>
+		</model>
+		<model id="deleteallrolehasmodels1" desc="deleteallrolehasmodels" view=""  out="">
+ 			<views>
+ 			    <!-- out=0不输出 模型信息,只是协助 下面 模型处理数据  -->
+ 				<view ref="deleteallrolehasmodels1" index="1" out="0" id="1">
+	 				<show>
+	 		 
+					</show> 				
+ 				</view>
+		</views>
+		</model>
+		<model id="selectSyStemRoleOPtion" desc="selectSyStemRoleOPtion" view=""  out="">
+ 			<views>
+ 			    <!-- out=0不输出 模型信息,只是协助 下面 模型处理数据  -->
+ 				<view ref="selectSyStemRoleOPtion" index="1" out="0" id="1">
+	 				<show>
+	 		 		 <col  name="module_id" desc="module_id"  bOut="1"  bVisible="1"  align="left" ></col>
+					 <col  name="name" desc="module_name"  bVisible="1" width="80" bOut="1" align="left" ></col>
+					 <col  name="description" desc="module_description"  bVisible="1" width="80" bOut="1" align="left" ></col>
+					</show> 				
+ 				</view>
+		</views>
+		</model>
+		<model id="selectroleoptiondb" desc="selectroleoptiondb" view=""  out="">
+ 			<views>
+ 			    <!-- out=0不输出 模型信息,只是协助 下面 模型处理数据  -->
+ 				<view ref="selectroleoptiondb" index="1" out="0" id="1">
+	 				<show>
+	 		 		 <col  name="module_id" desc="module_id"  bOut="1"  bVisible="1"  align="left" ></col>
+					 <col  name="name" desc="module_name"  bVisible="1" width="80" bOut="1" align="left" converter="com.theta.report.ver1.dim1.converter.common.LangageConverter"></col>
+					 <col  name="description" desc="module_description"  bVisible="1" width="80" bOut="1" align="left" ></col>
+					 <col  name="checked" desc="module_description"  bVisible="0" width="80" bOut="1" align="left" ></col>
+					
+					</show> 				
+ 				</view>
+		</views>
+		</model>
+		<model id="selectroletables" desc="查询用户现有的操作权限" view=""  out="">
+ 			<views>
+ 			    <!-- out=0不输出 模型信息,只是协助 下面 模型处理数据  -->
+ 				<view ref="selectroletables" index="1" out="0" id="1">
+	 				<show>
+	 		 		 <col  name="tables" desc="表名"  bOut="1"  bVisible="1"  align="left" ></col>
+					 <col  name="description" desc="module_description"  bVisible="0" width="80" bOut="1" align="left" ></col>
+					
+					</show> 				
+ 				</view>
+		</views>
+		</model>
+		<model id="selectroleoption" desc="查询用户现有的操作权限" view=""  out="">
+ 			<views>
+ 			    <!-- out=0不输出 模型信息,只是协助 下面 模型处理数据  -->
+ 				<view ref="selectroleoption" index="1" out="0" id="1">
+	 				<show>
+	 		 		 <col  name="module_id" desc="module_id"  bOut="1"  bVisible="1"  align="left" ></col>
+					 <col  name="role_id" desc="role_id"  bOut="1" width="100"  bVisible="1"  align="left" ></col>
+					 </show> 				
+ 				</view>
+		</views>
+		</model>
+		
+		
+	</models>
+</report>

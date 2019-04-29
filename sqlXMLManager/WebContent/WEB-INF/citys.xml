@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<mspweb><!-- 2位provinceid+ mapId =lac -->
+	<province id="1" name="安徽">
+		<city id="1" name="安庆" mapId="101" />
+		<city id="2" name="蚌埠" mapId="102" />
+		<city id="3" name="巢湖" mapId="103" />
+		<city id="4" name="池州" mapId="104" />
+		<city id="5" name="滁州" mapId="105" />
+		<city id="6" name="阜阳" mapId="106" />
+		<city id="7" name="合肥" mapId="107" />
+		<city id="8" name="淮北" mapId="108" />
+		<city id="9" name="淮南" mapId="109" />
+		<city id="10" name="黄山" mapId="110" />
+		<city id="11" name="六安" mapId="111" />
+		<city id="12" name="马鞍山" mapId="112" />
+		<city id="13" name="宿州" mapId="113" />
+		<city id="14" name="铜陵" mapId="114" />
+		<city id="15" name="芜湖" mapId="115" />
+		<city id="16" name="宣城" mapId="116" />
+		<city id="17" name="亳州" mapId="117" />
+	</province>
+	<province id="10" name="河南">
+		<city id="1" name="安阳" mapId="1001" />
+		<city id="2" name="鹤壁" mapId="1002" />
+		<city id="4" name="焦作" mapId="1004" />
+		<city id="5" name="开封" mapId="1005" />
+		<city id="6" name="洛阳" mapId="1006" />
+		<city id="7" name="漯河" mapId="1007" />
+		<city id="8" name="南阳" mapId="1008" />
+		<city id="9" name="平顶山" mapId="1009" />
+		<city id="10" name="濮阳" mapId="1010" />
+		<city id="11" name="三门峡" mapId="1011" />
+		<city id="12" name="商丘" mapId="1012" />
+		<city id="13" name="新乡" mapId="1013" />
+		<city id="14" name="信阳" mapId="1014" />
+		<city id="15" name="许昌" mapId="1015" />
+		<city id="16" name="郑州" mapId="1016" />
+		<city id="17" name="周口" mapId="1017" />
+		<city id="18" name="驻马店" mapId="1018" />
+	</province>
+	<province id="22" name="山西">
+		<city id="1" name="长治市" mapId="2201" />
+		<city id="2" name="大同市" mapId="2202" />
+		<city id="3" name="晋城市" mapId="2203" />
+		<city id="4" name="晋中地区" mapId="2204" />
+		<city id="5" name="临汾地区" mapId="2205" />
+		<city id="6" name="吕梁地区" mapId="2206" />
+		<city id="7" name="朔 州市" mapId="2207" />
+		<city id="8" name="太原市" mapId="2208" />
+		<city id="9" name="忻州地区" mapId="2209" />
+		<city id="10" name="阳泉市" mapId="2210" />
+		<city id="11" name="运城地区" mapId="2211" />
+	</province>
+	<province id="23" name="陕西">
+		<city id="1" name="安康" mapId="3839" />
+		<city id="2" name="宝鸡" mapId="3835" />
+		<city id="3" name="汉中" mapId="3889" />
+		<city id="4" name="商洛" mapId="3834" />
+		<city id="5" name="铜川" mapId="3825" />
+		<city id="6" name="渭南" mapId="3840" />
+		<city id="7" name="西安" mapId="3833" />
+		<city id="8" name="咸阳" mapId="3827" />
+		<city id="9" name="延安" mapId="3830" />
+		<city id="10" name="榆林" mapId="3841" />
+	</province>
+	<province id="25" name="四川">
+		<city id="1" name="阿坝州" mapId="3839" />
+		<city id="2" name="巴中市" mapId="3835" />
+		<city id="3" name="成都市" mapId="3889" />
+		<city id="4" name="达州市" mapId="3834" />
+		<city id="5" name="德阳市" mapId="3825" />
+		<city id="6" name="甘孜州" mapId="3840" />
+		<city id="7" name="广安市" mapId="3833" />
+		<city id="8" name="广元市" mapId="3827" />
+		<city id="9" name="乐山市" mapId="3830" />
+		<city id="10" name="凉山州" mapId="3841" />
+		<city id="11" name="泸州市" mapId="3824" />
+		<city id="12" name="眉山市" mapId="3837" />
+		<city id="13" name="绵阳市" mapId="3826" />
+		<city id="14" name="内江市" mapId="3829" />
+		<city id="15" name="南充市" mapId="3831" />
+		<city id="16" name="攀枝花市" mapId="3823" />
+		<city id="17" name="遂宁市" mapId="3828" />
+		<city id="18" name="雅安市" mapId="3836" />
+		<city id="19" name="宜宾市" mapId="3832" />
+		<city id="20" name="资阳市" mapId="3838" />
+		<city id="21" name="自贡市" mapId="3822" />
+	</province>
+	<province id="30" name="浙江">
+		<city id="1" name="杭州" mapId="3839" />
+		<city id="2" name="湖州" mapId="3835" />
+		<city id="3" name="嘉兴" mapId="3889" />
+		<city id="4" name="金华" mapId="3834" />
+		<city id="5" name="丽水" mapId="3825" />
+		<city id="6" name="宁波" mapId="3840" />
+		<city id="7" name="衢州" mapId="3833" />
+		<city id="8" name="绍兴" mapId="3827" />
+		<city id="9" name="台州" mapId="3830" />
+		<city id="10" name="温州" mapId="3830" />
+		<city id="11" name="舟山" mapId="3841" />
+
+	</province>
+	<province id="14" name="吉林">
+		<city id="1" name="白城" mapId="3839" />
+		<city id="2" name="白山" mapId="3835" />
+		<city id="3" name="长春" mapId="3889" />
+		<city id="5" name="吉林" mapId="3825" />
+		<city id="6" name="辽源" mapId="3840" />
+		<city id="8" name="四平" mapId="3827" />
+		<city id="9" name="松原" mapId="3830" />
+		<city id="10" name="通化" mapId="3831" />
+		<city id="11" name="延边" mapId="3841" />
+	</province>
+	<province id="21" name="山东">
+		<city id="1" name="滨州" mapId="2101" />
+		<city id="2" name="德州" mapId="2102" />
+		<city id="3" name="东营" mapId="2103" />
+		<city id="4" name="菏泽" mapId="2104" />
+		<city id="5" name="济南" mapId="2105" />
+		<city id="6" name="济宁" mapId="2106" />
+		<city id="7" name="莱芜" mapId="2107" />
+		<city id="8" name="聊城" mapId="2108" />
+		<city id="9" name="临沂" mapId="2109" />
+		<city id="10" name="青岛" mapId="2110" />
+		<city id="11" name="日照" mapId="2111" />
+		<city id="12" name="泰安" mapId="2112" />
+		<city id="13" name="威海" mapId="2113" />
+		<city id="14" name="潍坊" mapId="2114" />
+		<city id="15" name="烟台" mapId="2115" />
+		<city id="16" name="枣庄" mapId="2116" />
+		<city id="17" name="淄博" mapId="2117" />
+	</province>
+	<province id="27" name="西藏">
+		<city id="1" name="阿里" mapId="" />
+		<city id="2" name="昌都" mapId="" />
+		<city id="3" name="拉萨" mapId="" />
+		<city id="4" name="林芝" mapId="" />
+		<city id="5" name="那曲" mapId="" />
+		<city id="6" name="日喀则" mapId="" />
+		<city id="7" name="山南" mapId="" />
+	</province>
+	<province id="31" name="重庆">
+		<city id="1" name="涪陵" mapId="" />
+		<city id="2" name="黔江" mapId="" />
+		<city id="3" name="万州" mapId="" />
+		<city id="4" name="重庆" mapId="" />
+	</province>
+	
+	<province id="19" name="宁夏">
+		<city id="1" name="银川" mapId="1904" />
+		<city id="2" name="石嘴山" mapId="1902" />
+		<city id="3" name="吴忠" mapId="1903" />
+		<city id="4" name="中卫" mapId="1905" />
+		<city id="5" name="固原" mapId="1901" />
+	</province>
+	<province id="12" name="湖北">
+		<city id="1" name="鄂州" mapId="1201" />
+		<city id="2" name="恩施" mapId="1202" />
+		<city id="3" name="黄冈" mapId="1203" />
+		<city id="4" name="黄石" mapId="1204" />
+		<city id="5" name="天门" mapId="1205" />
+		<city id="6" name="荆门" mapId="1206" />
+		<city id="7" name="荆州" mapId="1207" />
+		<city id="8" name="十堰" mapId="1208" />
+		<city id="9" name="随州" mapId="1209" />
+		<city id="10" name="武汉" mapId="1210" />
+		<city id="11" name="仙桃" mapId="1211" />
+		<city id="12" name="咸宁" mapId="1212" />
+		<city id="13" name="襄阳" mapId="1213" />
+		<city id="14" name="孝感" mapId="1214" />
+		<city id="15" name="宜昌" mapId="1215" />
+		<city id="16" name="潜江" mapId="1216" />
+		<city id="17" name="神农架林区" mapId="1217" />
+	</province>
+	
+</mspweb>
